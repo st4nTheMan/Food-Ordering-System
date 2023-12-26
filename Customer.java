@@ -1,0 +1,103 @@
+package system;
+
+import javax.swing.*;
+import java.awt.*;
+import java.awt.event.*;
+
+class Customer implements ActionListener{
+    private JFrame frame;
+    private JButton welcomeButton;
+    private JButton cashierButton;
+
+    Customer(JFrame frame){
+        this.frame = frame;
+
+        JLabel welcomeLabel = new JLabel("WELCOME!");
+        welcomeLabel.setForeground(Color.white);
+        welcomeLabel.setBounds(340, 40, 450, 100);
+        welcomeLabel.setFont(new Font("Times New Roman", Font.PLAIN, 60));
+        frame.add(welcomeLabel);
+
+        JPanel background = new JPanel();
+        background.setBounds(0, 0, 1000, 900);
+        background.setBackground(Color.decode("#475C7A"));
+        frame.add(background);
+
+        welcomeButton = new JButton("CLICK HERE TO ORDER");
+        welcomeButton.setBounds(306, 383, 388, 133);
+        welcomeButton.setFont(new Font("Times New Roman", Font.PLAIN, 25));
+        welcomeButton.setBackground(Color.decode("#FFFFFF"));
+        welcomeButton.addActionListener(this);
+        frame.add(welcomeButton);
+
+        cashierButton = new JButton("FOR CASHIER ONLY!!");
+        cashierButton.setBounds(400, 750, 200, 40);
+        cashierButton.setFont(new Font("Times New Roman", Font.PLAIN, 14));
+        cashierButton.setBackground(Color.decode("#FFFFFF"));
+        cashierButton.addActionListener(this);
+        frame.add(cashierButton);
+
+        frame.setVisible(true);
+    }
+
+    static void orderPanel(JFrame frame){
+        JTabbedPane menuTab = new JTabbedPane();
+        menuTab.setBounds(43, 121, 594, 722);
+        frame.add(menuTab);
+
+        JPanel mainDish = new JPanel(null);
+        JButton dish1 = new JButton("Fried Chicken");
+        dish1.setBounds(40, 40, 115, 115);
+        dish1.setFont(new Font("Times New Roman", Font.PLAIN, 12));
+        dish1.setBackground(Color.decode("#FFFFFF"));
+        mainDish.add(dish1);
+        menuTab.add("Main Dish", mainDish);
+
+        JPanel sideDish = new JPanel();
+        menuTab.add("Side Dish", sideDish);
+
+        JPanel beverage = new JPanel();
+        menuTab.add("Beverage", beverage);
+
+        JPanel dessert = new JPanel();
+        menuTab.add("Dessert", dessert);
+
+        JPanel orderList = new JPanel(null);
+        orderList.setBounds(664, 142, 306, 560);
+        frame.add(orderList);
+
+        JLabel getDish1 = new JLabel();
+        getDish1.setBounds(20, 20, 70, 20);
+        getDish1.setFont(new Font("Times New Roman", Font.PLAIN, 14));
+        orderList.add(getDish1);
+
+        dish1.addActionListener(new ActionListener() {
+            public void actionPerformed(ActionEvent event){
+                getDish1.setText(dish1.getText());
+            }
+        });
+
+        JPanel orderPagePanel = new JPanel();
+        orderPagePanel.setBounds(0, 0, 1000, 900);
+        orderPagePanel.setBackground(Color.decode("#475C7A"));
+        frame.add(orderPagePanel);
+
+        frame.setVisible(true);
+    }
+
+    public void actionPerformed(ActionEvent event){
+        if(event.getSource() == welcomeButton){
+            clearFrame(frame);
+            orderPanel(frame);
+        }else if(event.getSource() == cashierButton){
+            clearFrame(frame);
+            new Cashier(frame);
+        }
+    }
+
+    static void clearFrame(JFrame frame){
+        frame.getContentPane().removeAll();
+        frame.repaint();
+        frame.validate();
+    }
+}
