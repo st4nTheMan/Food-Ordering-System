@@ -2,9 +2,13 @@ package system;
 
 import javax.swing.*;
 import java.awt.*;
+import java.awt.event.*;
 
-class Cashier{
+class Cashier implements ActionListener{
     private JFrame frame;
+    private JButton loginBtn;
+    private JTextField usernameText;
+    private JPasswordField passwordText;
 
     Cashier(JFrame frame){
         this.frame = frame;
@@ -26,7 +30,7 @@ class Cashier{
         usernameLabel.setForeground(Color.white);
         loginBackground.add(usernameLabel);
 
-        JTextField usernameText = new JTextField();
+        usernameText = new JTextField();
         usernameText.setBounds(400, 260, 200, 30);
         usernameText.setBackground(Color.white);
         loginBackground.add(usernameText);
@@ -37,16 +41,54 @@ class Cashier{
         passwordLabel.setForeground(Color.white);
         loginBackground.add(passwordLabel);
 
-        JPasswordField passwordText = new JPasswordField();
+        passwordText = new JPasswordField();
         passwordText.setBounds(400, 360, 200, 30);
         passwordText.setBackground(Color.white);
         loginBackground.add(passwordText);
 
-        JButton loginBtn = new JButton("LOGIN");
+        loginBtn = new JButton("LOGIN");
         loginBtn.setBounds(400, 480, 200, 50);
         loginBtn.setFont(new Font("Times New Roman", Font.PLAIN, 12));
         loginBtn.setBackground(Color.decode("#FFFFFF"));
         loginBackground.add(loginBtn);
+        loginBtn.addActionListener(this);
+
+        frame.setVisible(true);
+    }
+    
+    public void actionPerformed(ActionEvent event){
+        if(event.getSource() == loginBtn){
+            String username = usernameText.getText();
+            String password = new String(passwordText.getPassword());
+
+            if ("yourUsername".equals(username) && "yourPassword".equals(password)) {
+                openOrderPanel(frame);
+            } else {
+                JOptionPane.showMessageDialog(frame, "Login Failed. Invalid username or password.");
+            }
+
+            usernameText.setText("");
+            passwordText.setText("");
+        }
+    }
+
+    static void openOrderPanel(JFrame frame) {
+        frame.getContentPane().removeAll();
+        frame.repaint();
+
+        JPanel orderPanel = new JPanel(null);
+        orderPanel.setSize(1000, 900);
+        orderPanel.setBackground(Color.decode("#88B04B"));
+
+        frame.add(orderPanel);
+
+        JLabel orderLabel = new JLabel("CHECK ORDERS");
+        orderLabel.setBounds(339, 70, 500, 62);
+        orderPanel.add(orderLabel);
+
+        JButton backButton = new JButton("BACK TO LOGIN");
+        backButton.setBounds(260, 450, 200, 30);
+        orderPanel.add(backButton);
 
         frame.setVisible(true);
     }

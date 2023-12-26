@@ -3,6 +3,7 @@ package system;
 import javax.swing.*;
 import java.awt.*;
 import java.awt.event.*;
+import java.util.jar.JarEntry;
 
 class Customer implements ActionListener{
     private JFrame frame;
@@ -41,9 +42,14 @@ class Customer implements ActionListener{
     }
 
     static void orderPanel(JFrame frame){
+        JPanel orderPagePanel = new JPanel(null);
+        orderPagePanel.setBounds(0, 0, 1000, 900);
+        orderPagePanel.setBackground(Color.decode("#475C7A"));
+        frame.add(orderPagePanel);
+
         JTabbedPane menuTab = new JTabbedPane();
         menuTab.setBounds(43, 121, 594, 722);
-        frame.add(menuTab);
+        orderPagePanel.add(menuTab);
 
         JPanel mainDish = new JPanel(null);
         JButton dish1 = new JButton("Fried Chicken");
@@ -62,13 +68,24 @@ class Customer implements ActionListener{
         JPanel dessert = new JPanel();
         menuTab.add("Dessert", dessert);
 
+        JLabel orderListLabel = new JLabel("Orders");
+        orderListLabel.setBounds(664, 123, 100, 20);
+        orderListLabel.setFont(new Font("Times New Roman", Font.PLAIN, 14));
+        orderListLabel.setForeground(Color.white);
+        orderPagePanel.add(orderListLabel);
+
         JPanel orderList = new JPanel(null);
         orderList.setBounds(664, 142, 306, 560);
-        frame.add(orderList);
+        orderPagePanel.add(orderList);
+
+        JLabel table = new JLabel("Item        |        Quantity        |        Price");
+        table.setBounds(0, 0, 300, 20);
+        table.setFont(new Font("Times New Roman", Font.PLAIN, 12));
+        orderList.add(table);
 
         JLabel getDish1 = new JLabel();
-        getDish1.setBounds(20, 20, 70, 20);
-        getDish1.setFont(new Font("Times New Roman", Font.PLAIN, 14));
+        getDish1.setBounds(20, 20, 200, 20);
+        getDish1.setFont(new Font("Times New Roman", Font.PLAIN, 12));
         orderList.add(getDish1);
 
         dish1.addActionListener(new ActionListener() {
@@ -76,11 +93,6 @@ class Customer implements ActionListener{
                 getDish1.setText(dish1.getText());
             }
         });
-
-        JPanel orderPagePanel = new JPanel();
-        orderPagePanel.setBounds(0, 0, 1000, 900);
-        orderPagePanel.setBackground(Color.decode("#475C7A"));
-        frame.add(orderPagePanel);
 
         frame.setVisible(true);
     }
