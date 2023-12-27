@@ -59,6 +59,11 @@ class Customer implements ActionListener{
         mainDish.add(dish1);
         menuTab.add("Main Dish", mainDish);
 
+        JLabel dish1Price = new JLabel("$1.99");
+        dish1Price.setBounds(80, 150, 100, 30);
+        dish1Price.setFont(new Font("Times New Roman", Font.PLAIN, 12));
+        mainDish.add(dish1Price);
+
         JPanel sideDish = new JPanel();
         menuTab.add("Side Dish", sideDish);
 
@@ -95,12 +100,17 @@ class Customer implements ActionListener{
 
 
         JLabel getDish1 = new JLabel();
-        getDish1.setBounds(20, 20, 200, 20);
+        getDish1.setBounds(5, 20, 200, 20);
         getDish1.setFont(new Font("Times New Roman", Font.PLAIN, 12));
         orderList.add(getDish1);
+        JLabel getDish1Price = new JLabel();
+        getDish1Price.setBounds(270, 20, 100, 20);
+        getDish1Price.setFont(new Font("Times New Roman", Font.PLAIN, 12));
+        orderList.add(getDish1Price);
         dish1.addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent event){
                 getDish1.setText(dish1.getText());
+                getDish1Price.setText(dish1Price.getText());
             }
         });
 
