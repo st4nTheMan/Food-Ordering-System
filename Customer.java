@@ -78,16 +78,26 @@ class Customer implements ActionListener{
         orderList.setBounds(664, 142, 306, 560);
         orderPagePanel.add(orderList);
 
-        JLabel table = new JLabel("Item        |        Quantity        |        Price");
-        table.setBounds(0, 0, 300, 20);
-        table.setFont(new Font("Times New Roman", Font.PLAIN, 12));
-        orderList.add(table);
+        JLabel tableItem = new JLabel("Item");
+        tableItem.setBounds(0, 0, 300, 20);
+        tableItem.setFont(new Font("Times New Roman", Font.PLAIN, 12));
+        orderList.add(tableItem);
+
+        JLabel tableQty = new JLabel("Quantity");
+        tableQty.setBounds(130, 0, 300, 20);
+        tableQty.setFont(new Font("Times New Roman", Font.PLAIN, 12));
+        orderList.add(tableQty);
+
+        JLabel tablePrice = new JLabel("Price");
+        tablePrice.setBounds(280, 0, 300, 20);
+        tablePrice.setFont(new Font("Times New Roman", Font.PLAIN, 12));
+        orderList.add(tablePrice);
+
 
         JLabel getDish1 = new JLabel();
         getDish1.setBounds(20, 20, 200, 20);
         getDish1.setFont(new Font("Times New Roman", Font.PLAIN, 12));
         orderList.add(getDish1);
-
         dish1.addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent event){
                 getDish1.setText(dish1.getText());
