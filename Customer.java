@@ -9,6 +9,8 @@ class Customer implements ActionListener{
     private JFrame frame;
     private JButton welcomeButton;
     private JButton cashierButton;
+    private static int counter = 0;
+    private static JLabel qtyText;
 
     Customer(JFrame frame){
         this.frame = frame;
@@ -59,6 +61,18 @@ class Customer implements ActionListener{
         mainDish.add(dish1);
         menuTab.add("Main Dish", mainDish);
 
+        JButton increaseButton = new JButton("+");
+        increaseButton.setBounds(160, 40, 45, 45);
+        increaseButton.setFont(new Font("Times New Roman", Font.PLAIN, 12));
+        increaseButton.setBackground(Color.decode("#FFFFFF"));
+        mainDish.add(increaseButton);
+
+        JButton decreaseButton = new JButton("-");
+        decreaseButton.setBounds(160, 80, 45, 45);
+        decreaseButton.setFont(new Font("Times New Roman", Font.PLAIN, 12));
+        decreaseButton.setBackground(Color.decode("#FFFFFF"));
+        mainDish.add(decreaseButton);
+
         JLabel dish1Price = new JLabel("$1.99");
         dish1Price.setBounds(80, 150, 100, 30);
         dish1Price.setFont(new Font("Times New Roman", Font.PLAIN, 12));
@@ -98,6 +112,27 @@ class Customer implements ActionListener{
         tablePrice.setFont(new Font("Times New Roman", Font.PLAIN, 12));
         orderList.add(tablePrice);
 
+        qtyText = new JLabel();
+        qtyText.setBounds(130, 20, 300, 20);
+        qtyText.setFont(new Font("Times New Roman", Font.PLAIN, 12));
+        orderList.add(qtyText);
+
+        increaseButton.addActionListener(new ActionListener() {
+            public void actionPerformed(ActionEvent e) {
+                counter++;
+                qtyText.setText(Integer.toString(counter));
+            }
+        });
+    
+        decreaseButton.addActionListener(new ActionListener() {
+            public void actionPerformed(ActionEvent e) {
+                if (counter > 0) {
+                    counter--;
+                    qtyText.setText(Integer.toString(counter));
+                }
+            }
+        });
+    
 
         JLabel getDish1 = new JLabel();
         getDish1.setBounds(5, 20, 200, 20);
@@ -113,6 +148,8 @@ class Customer implements ActionListener{
                 getDish1Price.setText(dish1Price.getText());
             }
         });
+
+
 
         frame.setVisible(true);
     }
