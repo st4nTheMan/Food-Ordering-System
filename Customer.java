@@ -65,20 +65,16 @@ class Customer implements ActionListener{
         dish1Price.setFont(new Font("Times New Roman", Font.PLAIN, 12));
         mainDish.add(dish1Price);
 
-        
         JButton dish2 = new JButton("Spags");
         dish2.setBounds(40, 200, 115, 115);
         dish2.setFont(new Font("Times New Roman", Font.PLAIN, 12));
         dish2.setBackground(Color.decode("#FFFFFF"));
         mainDish.add(dish2);
 
-
-        JLabel dish1Price2 = new JLabel("$2.99");
-        dish1Price2.setBounds(80, 310, 100, 30);
-        dish1Price2.setFont(new Font("Times New Roman", Font.PLAIN, 12));
-        mainDish.add(dish1Price2);
-
-
+        JLabel dish2Price = new JLabel("$2.99");
+        dish2Price.setBounds(80, 310, 100, 30);
+        dish2Price.setFont(new Font("Times New Roman", Font.PLAIN, 12));
+        mainDish.add(dish2Price);
 
         JButton dish3 = new JButton("Canton");
         dish3.setBounds(40, 360, 115, 115);
@@ -86,10 +82,10 @@ class Customer implements ActionListener{
         dish3.setBackground(Color.decode("#FFFFFF"));
         mainDish.add(dish3);
 
-        JLabel dish1Price3 = new JLabel("$2.99");
-        dish1Price3.setBounds(80, 470, 100, 30);
-        dish1Price3.setFont(new Font("Times New Roman", Font.PLAIN, 12));
-        mainDish.add(dish1Price3);
+        JLabel dish3Price = new JLabel("$2.99");
+        dish3Price.setBounds(80, 470, 100, 30);
+        dish3Price.setFont(new Font("Times New Roman", Font.PLAIN, 12));
+        mainDish.add(dish3Price);
 
         menuTab.add("Main Dish", mainDish);
 
@@ -148,14 +144,14 @@ class Customer implements ActionListener{
         qtyText.setFont(new Font("Times New Roman", Font.PLAIN, 12));
         orderList.add(qtyText);
 
-        increaseButton.addActionListener(new ActionListener() {
+        increaseButton1.addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent e) {
                 counter++;
                 qtyText.setText(Integer.toString(counter));
             }
         });
     
-        decreaseButton.addActionListener(new ActionListener() {
+        decreaseButton1.addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent e) {
                 if (counter > 0) {
                     counter--;
@@ -180,6 +176,35 @@ class Customer implements ActionListener{
             }
         });
 
+        JLabel getDish2 = new JLabel();
+        getDish2.setBounds(5, 40, 200, 20);
+        getDish2.setFont(new Font("Times New Roman", Font.PLAIN, 12));
+        orderList.add(getDish2);
+        JLabel getDish2Price = new JLabel();
+        getDish2Price.setBounds(270, 40, 100, 20);
+        getDish2Price.setFont(new Font("Times New Roman", Font.PLAIN, 12));
+        orderList.add(getDish2Price);
+        dish2.addActionListener(new ActionListener() {
+            public void actionPerformed(ActionEvent event){
+                getDish2.setText(dish2.getText());
+                getDish2Price.setText(dish2Price.getText());
+            }
+        });
+
+        JLabel getDish3 = new JLabel();
+        getDish3.setBounds(5, 60, 200, 20);
+        getDish3.setFont(new Font("Times New Roman", Font.PLAIN, 12));
+        orderList.add(getDish3);
+        JLabel getDish3Price = new JLabel();
+        getDish3Price.setBounds(270, 60, 100, 20);
+        getDish3Price.setFont(new Font("Times New Roman", Font.PLAIN, 12));
+        orderList.add(getDish3Price);
+        dish3.addActionListener(new ActionListener() {
+            public void actionPerformed(ActionEvent event){
+                getDish3.setText(dish3.getText());
+                getDish3Price.setText(dish3Price.getText());
+            }
+        });
 
 
         frame.setVisible(true);
