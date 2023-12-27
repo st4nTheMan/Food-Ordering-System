@@ -59,24 +59,55 @@ class Customer implements ActionListener{
         dish1.setFont(new Font("Times New Roman", Font.PLAIN, 12));
         dish1.setBackground(Color.decode("#FFFFFF"));
         mainDish.add(dish1);
-        menuTab.add("Main Dish", mainDish);
-
-        JButton increaseButton = new JButton("+");
-        increaseButton.setBounds(160, 40, 45, 45);
-        increaseButton.setFont(new Font("Times New Roman", Font.PLAIN, 12));
-        increaseButton.setBackground(Color.decode("#FFFFFF"));
-        mainDish.add(increaseButton);
-
-        JButton decreaseButton = new JButton("-");
-        decreaseButton.setBounds(160, 80, 45, 45);
-        decreaseButton.setFont(new Font("Times New Roman", Font.PLAIN, 12));
-        decreaseButton.setBackground(Color.decode("#FFFFFF"));
-        mainDish.add(decreaseButton);
 
         JLabel dish1Price = new JLabel("$1.99");
         dish1Price.setBounds(80, 150, 100, 30);
         dish1Price.setFont(new Font("Times New Roman", Font.PLAIN, 12));
         mainDish.add(dish1Price);
+
+        
+        JButton dish2 = new JButton("Spags");
+        dish2.setBounds(40, 200, 115, 115);
+        dish2.setFont(new Font("Times New Roman", Font.PLAIN, 12));
+        dish2.setBackground(Color.decode("#FFFFFF"));
+        mainDish.add(dish2);
+
+
+        JLabel dish1Price2 = new JLabel("$2.99");
+        dish1Price2.setBounds(80, 310, 100, 30);
+        dish1Price2.setFont(new Font("Times New Roman", Font.PLAIN, 12));
+        mainDish.add(dish1Price2);
+
+
+
+        JButton dish3 = new JButton("Canton");
+        dish3.setBounds(40, 360, 115, 115);
+        dish3.setFont(new Font("Times New Roman", Font.PLAIN, 12));
+        dish3.setBackground(Color.decode("#FFFFFF"));
+        mainDish.add(dish3);
+
+        JLabel dish1Price3 = new JLabel("$2.99");
+        dish1Price3.setBounds(80, 470, 100, 30);
+        dish1Price3.setFont(new Font("Times New Roman", Font.PLAIN, 12));
+        mainDish.add(dish1Price3);
+
+        menuTab.add("Main Dish", mainDish);
+
+
+        JButton increaseButton1 = new JButton("+");
+        increaseButton1.setBounds(160, 40, 45, 45);
+        increaseButton1.setFont(new Font("Times New Roman", Font.PLAIN, 12));
+        increaseButton1.setBackground(Color.decode("#FFFFFF"));
+        mainDish.add(increaseButton1);
+
+        JButton decreaseButton1 = new JButton("-");
+        decreaseButton1.setBounds(160, 80, 45, 45);
+        decreaseButton1.setFont(new Font("Times New Roman", Font.PLAIN, 12));
+        decreaseButton1.setBackground(Color.decode("#FFFFFF"));
+        mainDish.add(decreaseButton1);
+        
+
+        
 
         JPanel sideDish = new JPanel();
         menuTab.add("Side Dish", sideDish);
