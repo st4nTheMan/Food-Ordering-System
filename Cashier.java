@@ -78,7 +78,7 @@ class Cashier implements ActionListener{
 
         JPanel orderPanel = new JPanel(null);
         orderPanel.setSize(1000, 900);
-        orderPanel.setBackground(Color.decode("#88B04B"));
+        orderPanel.setBackground(Color.decode("#475C7A"));
 
         frame.add(orderPanel);
 

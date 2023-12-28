@@ -65,6 +65,18 @@ class Customer implements ActionListener{
         dish1Price.setFont(new Font("Times New Roman", Font.PLAIN, 12));
         mainDish.add(dish1Price);
 
+        JButton increaseButton1 = new JButton("+");
+        increaseButton1.setBounds(160, 40, 45, 45);
+        increaseButton1.setFont(new Font("Times New Roman", Font.PLAIN, 12));
+        increaseButton1.setBackground(Color.decode("#FFFFFF"));
+        mainDish.add(increaseButton1);
+
+        JButton decreaseButton1 = new JButton("-");
+        decreaseButton1.setBounds(160, 80, 45, 45);
+        decreaseButton1.setFont(new Font("Times New Roman", Font.PLAIN, 12));
+        decreaseButton1.setBackground(Color.decode("#FFFFFF"));
+        mainDish.add(decreaseButton1);
+
         JButton dish2 = new JButton("Spags");
         dish2.setBounds(40, 200, 115, 115);
         dish2.setFont(new Font("Times New Roman", Font.PLAIN, 12));
@@ -75,6 +87,18 @@ class Customer implements ActionListener{
         dish2Price.setBounds(80, 310, 100, 30);
         dish2Price.setFont(new Font("Times New Roman", Font.PLAIN, 12));
         mainDish.add(dish2Price);
+
+        JButton increaseButton2 = new JButton("+");
+        increaseButton2.setBounds(160, 200, 45, 45);
+        increaseButton2.setFont(new Font("Times New Roman", Font.PLAIN, 12));
+        increaseButton2.setBackground(Color.decode("#FFFFFF"));
+        mainDish.add(increaseButton2);
+
+        JButton decreaseButton2 = new JButton("-");
+        decreaseButton2.setBounds(160, 240, 45, 45);
+        decreaseButton2.setFont(new Font("Times New Roman", Font.PLAIN, 12));
+        decreaseButton2.setBackground(Color.decode("#FFFFFF"));
+        mainDish.add(decreaseButton2);
 
         JButton dish3 = new JButton("Canton");
         dish3.setBounds(40, 360, 115, 115);
@@ -87,23 +111,19 @@ class Customer implements ActionListener{
         dish3Price.setFont(new Font("Times New Roman", Font.PLAIN, 12));
         mainDish.add(dish3Price);
 
+        JButton increaseButton3 = new JButton("+");
+        increaseButton3.setBounds(160, 360, 45, 45);
+        increaseButton3.setFont(new Font("Times New Roman", Font.PLAIN, 12));
+        increaseButton3.setBackground(Color.decode("#FFFFFF"));
+        mainDish.add(increaseButton3);
+
+        JButton decreaseButton3 = new JButton("-");
+        decreaseButton3.setBounds(160, 400, 45, 45);
+        decreaseButton3.setFont(new Font("Times New Roman", Font.PLAIN, 12));
+        decreaseButton3.setBackground(Color.decode("#FFFFFF"));
+        mainDish.add(decreaseButton3);
+
         menuTab.add("Main Dish", mainDish);
-
-
-        JButton increaseButton1 = new JButton("+");
-        increaseButton1.setBounds(160, 40, 45, 45);
-        increaseButton1.setFont(new Font("Times New Roman", Font.PLAIN, 12));
-        increaseButton1.setBackground(Color.decode("#FFFFFF"));
-        mainDish.add(increaseButton1);
-
-        JButton decreaseButton1 = new JButton("-");
-        decreaseButton1.setBounds(160, 80, 45, 45);
-        decreaseButton1.setFont(new Font("Times New Roman", Font.PLAIN, 12));
-        decreaseButton1.setBackground(Color.decode("#FFFFFF"));
-        mainDish.add(decreaseButton1);
-        
-
-        
 
         JPanel sideDish = new JPanel();
         menuTab.add("Side Dish", sideDish);
