@@ -61,7 +61,7 @@ class Customer implements ActionListener{
         dish1.setBackground(Color.decode("#FFFFFF"));
         mainDish.add(dish1);
 
-        JLabel dish1Price = new JLabel("$1.99");
+        JLabel dish1Price = new JLabel("P149");
         dish1Price.setBounds(80, 150, 100, 30);
         dish1Price.setFont(new Font("Times New Roman", Font.PLAIN, 12));
         mainDish.add(dish1Price);
@@ -90,7 +90,7 @@ class Customer implements ActionListener{
         dish2.setBackground(Color.decode("#FFFFFF"));
         mainDish.add(dish2);
 
-        JLabel dish2Price = new JLabel("$2.99");
+        JLabel dish2Price = new JLabel("P120");
         dish2Price.setBounds(80, 310, 100, 30);
         dish2Price.setFont(new Font("Times New Roman", Font.PLAIN, 12));
         mainDish.add(dish2Price);
@@ -101,7 +101,7 @@ class Customer implements ActionListener{
         dish3.setBackground(Color.decode("#FFFFFF"));
         mainDish.add(dish3);
 
-        JLabel dish3Price = new JLabel("$2.99");
+        JLabel dish3Price = new JLabel("P32");
         dish3Price.setBounds(80, 470, 100, 30);
         dish3Price.setFont(new Font("Times New Roman", Font.PLAIN, 12));
         mainDish.add(dish3Price);
@@ -252,6 +252,12 @@ class Customer implements ActionListener{
         orderList.setBounds(664, 142, 306, 560);
         orderPagePanel.add(orderList);
 
+        JButton finishOrderButton = new JButton("Finish Order");
+        finishOrderButton.setBounds(664, 710, 150, 30);
+        finishOrderButton.setFont(new Font("Times New Roman", Font.PLAIN, 14));
+        finishOrderButton.setBackground(Color.decode("#FFFFFF"));
+        orderPagePanel.add(finishOrderButton);
+        
         orderTextArea = new JTextArea();
         orderTextArea.setBounds(0, 0, 306, 560);
         orderTextArea.setEditable(false);
@@ -280,8 +286,7 @@ class Customer implements ActionListener{
                 if (!addedToOrder) {
                     String selectedDish = dish1.getText();
                     String selectedPrice = dish1Price.getText();
-                    String selectedQuantity = qtyText.getText();
-                    appendToOrder(selectedDish, selectedPrice, selectedQuantity);
+                    appendToOrder(selectedDish, selectedPrice);
                     addedToOrder = true;
                 }
             }
@@ -290,7 +295,7 @@ class Customer implements ActionListener{
         frame.setVisible(true);
     }
 
-    private static void appendToOrder(String dish, String price, String quantity) {
+    private static void appendToOrder(String dish, String price) {
         String newText = dish + "\t Price: " + price + "\t Quantity: " + quantity + "\n";
         orderTextArea.append(newText);
         }
