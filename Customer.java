@@ -80,135 +80,99 @@ class Customer implements ActionListener{
         JPanel sideDish = new JPanel(null);
         
         JButton sideDish1 = new JButton("Meatballs");
-        sideDish1.setBounds(40, 40, 115, 115);
-        sideDish1.setFont(new Font("Times New Roman", Font.PLAIN, 12));
-        sideDish1.setBackground(Color.decode("#FFFFFF"));
-        sideDish.add(sideDish1);
-
-        JLabel sideDishPrice = new JLabel("$1.99");
-        sideDishPrice.setBounds(80, 150, 100, 30);
-        sideDishPrice.setFont(new Font("Times New Roman", Font.PLAIN, 12));
-        sideDish.add(sideDishPrice);
+        Components.addButton(sideDish1,sideDish,40,40,115,115,12);
+       
+        JLabel sideDishPrice = new JLabel();
+        Components.addLabel(sideDishPrice,sideDish,"$1.99",80,150,100,30,12);
+        
 
         JButton increaseButton2 = new JButton("+");
-        increaseButton2.setBounds(160, 40, 45, 45);
-        increaseButton2.setFont(new Font("Times New Roman", Font.PLAIN, 12));
-        increaseButton2.setBackground(Color.decode("#FFFFFF"));
-        sideDish.add(increaseButton2);
-
+        Components.addButton(increaseButton2,sideDish,160,40,45,45,12);
+        
         JButton decreaseButton2 = new JButton("-");
-        decreaseButton2.setBounds(160, 80, 45, 45);
-        decreaseButton2.setFont(new Font("Times New Roman", Font.PLAIN, 12));
-        decreaseButton2.setBackground(Color.decode("#FFFFFF"));
-        sideDish.add(decreaseButton2);
+        Components.addButton(decreaseButton2,sideDish,160,80,45,45,12);
+        
 
         JButton sideDish2 = new JButton("Itlog");
+        Components.addButton(sideDish2,sideDish,40,200,115,115,12);
         sideDish2.setBounds(40, 200, 115, 115);
-        sideDish2.setFont(new Font("Times New Roman", Font.PLAIN, 12));
-        sideDish2.setBackground(Color.decode("#FFFFFF"));
-        sideDish.add(sideDish2);
 
-        JLabel dishprice2 = new JLabel("$2.99");
-        dishprice2.setBounds(80, 310, 100, 30);
-        dishprice2.setFont(new Font("Times New Roman", Font.PLAIN, 12));
-        sideDish.add(dishprice2); 
+       
+        JLabel dishprice2 = new JLabel();
+        Components.addLabel(dishprice2,sideDish,"$2.99",80,310,100,30,12);
+       
 
         JButton sideDish3 = new JButton("Sudan");
-        sideDish3.setBounds(40, 360, 115, 115);
-        sideDish3.setFont(new Font("Times New Roman", Font.PLAIN, 12));
-        sideDish3.setBackground(Color.decode("#FFFFFF"));
-        sideDish.add(sideDish3);
+        Components.addButton(sideDish3,sideDish,40,360,115,115,12);
 
-        JLabel sideDishprice3 = new JLabel("$2.99");
-        sideDishprice3.setBounds(80, 470, 100, 30);
-        sideDishprice3.setFont(new Font("Times New Roman", Font.PLAIN, 12));
-        sideDish.add(sideDishprice3);
+       
 
+        JLabel sideDishprice3 = new JLabel();
+        Components.addLabel(sideDishprice3,sideDish,"$2.99",80,470,100,30,12);
+        
         menuTab.add("Side Dish", sideDish);
         
 
         JPanel beverage = new JPanel(null);
-        JButton bev1 = new JButton("C2");
-        bev1.setBounds(40, 40, 115, 115);
-        bev1.setFont(new Font("Times New Roman", Font.PLAIN, 12));
-        bev1.setBackground(Color.decode("#FFFFFF"));
-        beverage.add(bev1);
 
-        JLabel bev1Price = new JLabel("$1.99");
-        bev1Price.setBounds(80, 150, 100, 30);
-        bev1Price.setFont(new Font("Times New Roman", Font.PLAIN, 12));
-        beverage.add(bev1Price);
+        JButton bev1 = new JButton("C2");
+        Components.addButton(bev1,beverage,40,40,115,115,12);
+       
+
+        JLabel bev1Price = new JLabel();
+        Components.addLabel(bev1Price,beverage,"$1.99",80,150,100,30,12);
+
+       
 
         JButton bev2 = new JButton("Coke");
-        bev2.setBounds(40, 200, 115, 115);
-        bev2.setFont(new Font("Times New Roman", Font.PLAIN, 12));
-        bev2.setBackground(Color.decode("#FFFFFF"));
-        beverage.add(bev2);
+        Components.addButton(bev2,beverage,40,200,115,115,12);
+       
 
-        JLabel bev2Price = new JLabel("$2.99");
-        bev2Price.setBounds(80, 310, 100, 30);
-        bev2Price.setFont(new Font("Times New Roman", Font.PLAIN, 12));
-        beverage.add(bev2Price); 
+        JLabel bev2Price = new JLabel();
+        Components.addLabel(bev2Price,beverage,"$2.99",80,310,100,30,12);
+        
 
         JButton bev3 = new JButton("Sudan");
-        bev3.setBounds(40, 360, 115, 115);
-        bev3.setFont(new Font("Times New Roman", Font.PLAIN, 12));
-        bev3.setBackground(Color.decode("#FFFFFF"));
-        beverage.add(bev3);
+        Components.addButton(bev3,beverage,40,360,115,115,12);
+     
 
-        JLabel bev3Price = new JLabel("$2.99");
-        bev3Price.setBounds(80, 470, 100, 30);
-        bev3Price.setFont(new Font("Times New Roman", Font.PLAIN, 12));
-        beverage.add(bev3Price);
+        JLabel bev3Price = new JLabel();
+        Components.addLabel(bev3Price,beverage,"$2.99",80,470,100,30,12);
 
         menuTab.add("Beverage", beverage);
 
         JButton increaseButton3 = new JButton("+");
-        increaseButton3.setBounds(160, 40, 45, 45);
-        increaseButton3.setFont(new Font("Times New Roman", Font.PLAIN, 12));
-        increaseButton3.setBackground(Color.decode("#FFFFFF"));
-        beverage.add(increaseButton3);
+        Components.addButton(increaseButton3,beverage,160,40,45,45,12);
+
+       
 
         JButton decreaseButton3 = new JButton("-");
-        decreaseButton3.setBounds(160, 80, 45, 45);
-        decreaseButton3.setFont(new Font("Times New Roman", Font.PLAIN, 12));
-        decreaseButton3.setBackground(Color.decode("#FFFFFF"));
-        beverage.add(decreaseButton3);
-
-
+        Components.addButton(decreaseButton3,beverage,160,80,45,45,12);
+       
         JPanel dessert = new JPanel(null);
         JButton dess1 = new JButton("Cakes");
-        dess1.setBounds(40, 40, 115, 115);
-        dess1.setFont(new Font("Times New Roman", Font.PLAIN, 12));
-        dess1.setBackground(Color.decode("#FFFFFF"));
-        dessert.add(dess1);
+        Components.addButton(dess1,dessert,40,40,115,115,12);
+       
+        JLabel dessPrice1 = new JLabel();
+        Components.addLabel(dessPrice1,dessert,"$1.99",80,150,100,30,12);
 
-        JLabel dessPrice1 = new JLabel("$1.99");
-        dessPrice1.setBounds(80, 150, 100, 30);
-        dessPrice1.setFont(new Font("Times New Roman", Font.PLAIN, 12));
-        dessert.add(dessPrice1);
+       
 
         JButton dess2 = new JButton("Coke");
-        dess2.setBounds(40, 200, 115, 115);
-        dess2.setFont(new Font("Times New Roman", Font.PLAIN, 12));
-        dess2.setBackground(Color.decode("#FFFFFF"));
-        dessert.add(dess2);
+        Components.addButton(dess2,dessert,40,200,115,115,12);
+       
 
-        JLabel dessPrice2 = new JLabel("$2.99");
-        dessPrice2.setBounds(80, 310, 100, 30);
-        dessPrice2.setFont(new Font("Times New Roman", Font.PLAIN, 12));
-        dessert.add(dessPrice2); 
+        JLabel dessPrice2 = new JLabel();
+        Components.addLabel(dessPrice2,dessert,"$2.99",80,310,100,30,12);
+
+       
 
         JButton dess3 = new JButton("Sudan");
-        dess3.setBounds(40, 360, 115, 115);
-        dess3.setFont(new Font("Times New Roman", Font.PLAIN, 12));
-        dess3.setBackground(Color.decode("#FFFFFF"));
-        dessert.add(dess3);
+        Components.addButton(dess3,dessert,40,360,115,115,12);
 
-        JLabel dessPrice3 = new JLabel("$2.99");
-        dessPrice3.setBounds(80, 470, 100, 30);
-        dessPrice3.setFont(new Font("Times New Roman", Font.PLAIN, 12));
-        dessert.add(dessPrice3);
+    
+        JLabel dessPrice3 = new JLabel();
+        Components.addLabel(dessPrice3,dessert,"$2.99",80,470,100,30,12);
 
         menuTab.add("Dessert", dessert);
 
@@ -223,10 +187,9 @@ class Customer implements ActionListener{
         orderPagePanel.add(orderList);
 
         JButton finishOrderButton = new JButton("Finish Order");
-        finishOrderButton.setBounds(664, 710, 150, 30);
-        finishOrderButton.setFont(new Font("Times New Roman", Font.PLAIN, 14));
+        Components.addButton(finishOrderButton,orderPagePanel,664,710,150,30,14);
         finishOrderButton.setBackground(Color.decode("#FFFFFF"));
-        orderPagePanel.add(finishOrderButton);
+     
         
         orderTextArea = new JTextArea();
         orderTextArea.setBounds(0, 0, 306, 560);
