@@ -18,28 +18,22 @@ class Cashier implements ActionListener{
         loginBackground.setBackground(Color.decode("#475C7A"));
         frame.add(loginBackground);
 
-        JLabel welcome = new JLabel("WELCOME");
-        welcome.setBounds(340, 40, 450, 100);
-        welcome.setFont(new Font("Times New Roman", Font.PLAIN, 60));
+        JLabel welcome = new JLabel();
         welcome.setForeground(Color.white);
-        loginBackground.add(welcome);
+        Components.addLabel(welcome, loginBackground, "WELCOME", 340, 40, 450, 100, 60);
 
-        JLabel usernameLabel = new JLabel("USERNAME");
-        usernameLabel.setBounds(400, 230, 100, 15);
-        usernameLabel.setFont(new Font("Times New Roman", Font.PLAIN, 14));
+        JLabel usernameLabel = new JLabel();
         usernameLabel.setForeground(Color.white);
-        loginBackground.add(usernameLabel);
+        Components.addLabel(usernameLabel, loginBackground, "USERNAME", 400, 230, 100, 15, 14);
 
         usernameText = new JTextField();
         usernameText.setBounds(400, 260, 200, 30);
         usernameText.setBackground(Color.white);
         loginBackground.add(usernameText);
 
-        JLabel passwordLabel = new JLabel("PASSWORD");
-        passwordLabel.setBounds(400, 330, 100, 15);
-        passwordLabel.setFont(new Font("Times New Roman", Font.PLAIN, 14));
+        JLabel passwordLabel = new JLabel();
         passwordLabel.setForeground(Color.white);
-        loginBackground.add(passwordLabel);
+        Components.addLabel(passwordLabel, loginBackground, "PASSWORD", 400, 330, 100, 15, 14);
 
         passwordText = new JPasswordField();
         passwordText.setBounds(400, 360, 200, 30);
@@ -47,10 +41,7 @@ class Cashier implements ActionListener{
         loginBackground.add(passwordText);
 
         loginBtn = new JButton("LOGIN");
-        loginBtn.setBounds(400, 480, 200, 50);
-        loginBtn.setFont(new Font("Times New Roman", Font.PLAIN, 12));
-        loginBtn.setBackground(Color.decode("#FFFFFF"));
-        loginBackground.add(loginBtn);
+        Components.addButton(loginBtn, loginBackground, 400, 480, 200, 50, 12);
         loginBtn.addActionListener(this);
 
         frame.setVisible(true);

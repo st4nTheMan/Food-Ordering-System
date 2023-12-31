@@ -101,40 +101,30 @@ class Customer implements ActionListener{
         JLabel dishprice2 = new JLabel();
         Components.addLabel(dishprice2,sideDish,"$2.99",80,310,100,30,12);
        
-
         JButton sideDish3 = new JButton("Sudan");
         Components.addButton(sideDish3,sideDish,40,360,115,115,12);
-
-       
 
         JLabel sideDishprice3 = new JLabel();
         Components.addLabel(sideDishprice3,sideDish,"$2.99",80,470,100,30,12);
         
         menuTab.add("Side Dish", sideDish);
-        
 
         JPanel beverage = new JPanel(null);
 
         JButton bev1 = new JButton("C2");
         Components.addButton(bev1,beverage,40,40,115,115,12);
-       
 
         JLabel bev1Price = new JLabel();
         Components.addLabel(bev1Price,beverage,"$1.99",80,150,100,30,12);
-
        
-
         JButton bev2 = new JButton("Coke");
-        Components.addButton(bev2,beverage,40,200,115,115,12);
-       
+        Components.addButton(bev2,beverage,40,200,115,115,12);       
 
         JLabel bev2Price = new JLabel();
-        Components.addLabel(bev2Price,beverage,"$2.99",80,310,100,30,12);
-        
+        Components.addLabel(bev2Price,beverage,"$2.99",80,310,100,30,12);       
 
         JButton bev3 = new JButton("Sudan");
-        Components.addButton(bev3,beverage,40,360,115,115,12);
-     
+        Components.addButton(bev3,beverage,40,360,115,115,12);     
 
         JLabel bev3Price = new JLabel();
         Components.addLabel(bev3Price,beverage,"$2.99",80,470,100,30,12);
@@ -143,33 +133,26 @@ class Customer implements ActionListener{
 
         JButton increaseButton3 = new JButton("+");
         Components.addButton(increaseButton3,beverage,160,40,45,45,12);
-
        
-
         JButton decreaseButton3 = new JButton("-");
         Components.addButton(decreaseButton3,beverage,160,80,45,45,12);
        
         JPanel dessert = new JPanel(null);
+
         JButton dess1 = new JButton("Cakes");
         Components.addButton(dess1,dessert,40,40,115,115,12);
        
         JLabel dessPrice1 = new JLabel();
-        Components.addLabel(dessPrice1,dessert,"$1.99",80,150,100,30,12);
-
-       
+        Components.addLabel(dessPrice1,dessert,"$1.99",80,150,100,30,12);  
 
         JButton dess2 = new JButton("Coke");
         Components.addButton(dess2,dessert,40,200,115,115,12);
        
-
         JLabel dessPrice2 = new JLabel();
-        Components.addLabel(dessPrice2,dessert,"$2.99",80,310,100,30,12);
-
-       
+        Components.addLabel(dessPrice2,dessert,"$2.99",80,310,100,30,12);     
 
         JButton dess3 = new JButton("Sudan");
         Components.addButton(dess3,dessert,40,360,115,115,12);
-
     
         JLabel dessPrice3 = new JLabel();
         Components.addLabel(dessPrice3,dessert,"$2.99",80,470,100,30,12);
