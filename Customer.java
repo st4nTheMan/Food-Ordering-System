@@ -3,15 +3,17 @@ package system;
 import javax.swing.*;
 import java.awt.*;
 import java.awt.event.*;
+import javax.swing.event.*;
 import java.util.jar.JarEntry;
 
 class Customer implements ActionListener{
     private JFrame frame;
     private JButton welcomeButton;
     private JButton cashierButton;
-    private static JTextArea orderTextArea = new JTextArea();;
+    private static JTextArea orderTextArea;
     private static int quantity = 0;
-    private static JLabel qtyText = new JLabel();
+    private static JLabel qtyLabel;
+    private static JSpinner qtySpinner;
 
     Customer(JFrame frame){
         this.frame = frame;
@@ -54,14 +56,17 @@ class Customer implements ActionListener{
         JLabel dish1Price = new JLabel();
         Components.addLabel(dish1Price, mainDish, "P149", 80, 15, 100, 30, 12);
 
+        qtyLabel = new JLabel("Quantity: 1");
+        qtyLabel.setBounds(105, 40, 100, 30);
+        mainDish.add(qtyLabel);
+
+        SpinnerModel qtyCount = new SpinnerNumberModel(1, 1, 5, 1);
+        qtySpinner = new JSpinner(qtyCount);
+        qtySpinner.setBounds(160, 40, 50, 30);
+        mainDish.add(qtySpinner);
+
         JButton addToOrderButton1 = new JButton("Add to Order");
         Components.addButton(addToOrderButton1, mainDish, 160, 120, 150, 30, 12);
-
-        JButton increaseButton1 = new JButton("+");
-        Components.addButton(increaseButton1, mainDish, 160, 40, 45, 45, 12);
-
-        JButton decreaseButton1 = new JButton("-");
-        Components.addButton(decreaseButton1, mainDish, 160, 80, 45, 45, 12);
 
         JButton dish2 = new JButton("Spags");
         Components.addButton(dish2, mainDish, 40, 200, 115, 115, 12);
@@ -159,62 +164,62 @@ class Customer implements ActionListener{
 
         menuTab.add("Dessert", dessert);
 
-        JLabel orderListLabel = new JLabel("Orders");
-        orderListLabel.setBounds(664, 123, 100, 20);
-        orderListLabel.setFont(new Font("Times New Roman", Font.PLAIN, 14));
+        JLabel orderListLabel = new JLabel();
         orderListLabel.setForeground(Color.white);
-        orderPagePanel.add(orderListLabel);
+        Components.addLabel(orderListLabel, orderPagePanel, "Orders", 664, 123, 100, 20, 14);
 
         JPanel orderList = new JPanel(null);
         orderList.setBounds(664, 142, 306, 560);
         orderPagePanel.add(orderList);
 
+        JLabel itemLabel = new JLabel();
+        Components.addLabel(itemLabel, orderList, "Item", 5, 0, 100, 20, 12);
+
+        JLabel quantityLabel = new JLabel();
+        Components.addLabel(quantityLabel, orderList, "Quantity", 130, 0, 100, 20, 12);
+
+        JLabel priceLabel = new JLabel();
+        Components.addLabel(priceLabel, orderList, "Price", 275, 0, 100, 20, 12);
+
         JButton finishOrderButton = new JButton("Finish Order");
         Components.addButton(finishOrderButton,orderPagePanel,664,710,150,30,14);
         finishOrderButton.setBackground(Color.decode("#FFFFFF"));
      
-        
-        orderTextArea = new JTextArea();
-        orderTextArea.setBounds(0, 0, 306, 560);
-        orderTextArea.setEditable(false);
-        orderList.add(orderTextArea);
-
-        increaseButton1.addActionListener(new ActionListener() {
-            public void actionPerformed(ActionEvent e) {
-                quantity++;
-                qtyText.setText(Integer.toString(quantity));
-            }
-        });
-
-        decreaseButton1.addActionListener(new ActionListener() {
-            public void actionPerformed(ActionEvent e) {
-                if (quantity > 0) {
-                    quantity--;
-                    qtyText.setText(Integer.toString(quantity));
-                }
-            }
-        });
+        DefaultListModel<String> orderListModel = new DefaultListModel<>();
+        JList<String> orderListJList = new JList<>(orderListModel);
+        JScrollPane orderListScrollPane = new JScrollPane(orderListJList);
+        orderListScrollPane.setBounds(0, 20, 306, 560);
+        orderList.add(orderListScrollPane);
 
         addToOrderButton1.addActionListener(new ActionListener() {
             private boolean addedToOrder = false;
-        
+    
             public void actionPerformed(ActionEvent event) {
                 if (!addedToOrder) {
                     String selectedDish = dish1.getText();
                     String selectedPrice = dish1Price.getText();
-                    appendToOrder(selectedDish, selectedPrice);
+                    int selectedQuantity = Integer.parseInt(qtyLabel.getText().replaceAll("\\D", ""));
+                    appendToOrder(orderListModel, selectedDish, selectedPrice, selectedQuantity);
                     addedToOrder = true;
                 }
+            }
+        });
+
+        qtySpinner.addChangeListener(new ChangeListener() {
+            public void stateChanged(ChangeEvent e){
+                quantity = (int) qtySpinner.getValue();
+                qtyLabel.setText("" + quantity);
             }
         });
         
         frame.setVisible(true);
     }
 
-    private static void appendToOrder(String dish, String price) {
-        String newText = dish + "\t Price: " + price + "\t Quantity: " + quantity + "\n";
-        orderTextArea.append(newText);
-        }
+    private static void appendToOrder(DefaultListModel<String> orderListModel, String dish, String price, int quantity) {
+        qtyLabel.setText("" + quantity);
+        String newText = dish + "\t \t" + qtyLabel.getText() + "\t" + price;
+        orderListModel.addElement(newText);
+    }
 
     public void actionPerformed(ActionEvent event){
         if(event.getSource() == welcomeButton){
