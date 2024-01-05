@@ -3,6 +3,9 @@ package system;
 import javax.swing.*;
 import java.awt.*;
 import java.awt.event.*;
+import java.io.*;
+import java.nio.file.*;
+import java.util.List;
 
 class Cashier implements ActionListener{
     private JFrame frame;
@@ -53,7 +56,7 @@ class Cashier implements ActionListener{
             String password = new String(passwordText.getPassword());
 
             if ("yourUsername".equals(username) && "yourPassword".equals(password)) {
-                openOrderPanel(frame);
+                checkOrders(frame);
             } else {
                 JOptionPane.showMessageDialog(frame, "Login Failed. Invalid username or password.");
             }
@@ -63,7 +66,7 @@ class Cashier implements ActionListener{
         }
     }
 
-    static void openOrderPanel(JFrame frame) {
+    static void checkOrders(JFrame frame) {
         frame.getContentPane().removeAll();
         frame.repaint();
 
@@ -75,6 +78,21 @@ class Cashier implements ActionListener{
         JLabel orderLabel = new JLabel("CHECK ORDERS");
         orderLabel.setBounds(339, 70, 500, 62);
         orderPanel.add(orderLabel);
+
+        JTextArea ordersTextArea = new JTextArea();
+        ordersTextArea.setBounds(100, 150, 800, 250);
+        orderPanel.add(ordersTextArea);
+
+        try {
+            // Use the getter method to access FOLDER_PATH
+            List<String> orders = Files.readAllLines(Paths.get(Customer.getFolderPath(), "orders.dat"));
+            for (String order : orders) {
+                ordersTextArea.append(order + "\n");
+            }
+        } catch (IOException e) {
+            e.printStackTrace();
+            JOptionPane.showMessageDialog(frame, "Error reading orders from file.");
+        }
 
         JButton backButton = new JButton("BACK TO LOGIN");
         backButton.setBounds(260, 450, 200, 30);
