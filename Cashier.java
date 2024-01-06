@@ -69,20 +69,20 @@ class Cashier implements ActionListener{
     static void checkOrders(JFrame frame) {
         frame.getContentPane().removeAll();
         frame.repaint();
-
+    
         JPanel orderPanel = new JPanel(null);
         orderPanel.setSize(1000, 900);
         orderPanel.setBackground(Color.decode("#475C7A"));
         frame.add(orderPanel);
-
+    
         JLabel orderLabel = new JLabel("CHECK ORDERS");
         orderLabel.setBounds(339, 70, 500, 62);
         orderPanel.add(orderLabel);
-
+    
         JTextArea ordersTextArea = new JTextArea();
         ordersTextArea.setBounds(100, 150, 800, 250);
         orderPanel.add(ordersTextArea);
-
+    
         try {
             // Use the getter method to access FOLDER_PATH
             List<String> orders = Files.readAllLines(Paths.get(Customer.getFolderPath(), "orders.dat"));
@@ -93,11 +93,66 @@ class Cashier implements ActionListener{
             e.printStackTrace();
             JOptionPane.showMessageDialog(frame, "Error reading orders from file.");
         }
-
+    
+        JButton paidButton = new JButton("Paid");
+        paidButton.setBounds(500, 450, 100, 30);
+        orderPanel.add(paidButton);
+    
         JButton backButton = new JButton("BACK TO LOGIN");
         backButton.setBounds(260, 450, 200, 30);
         orderPanel.add(backButton);
 
+        backButton.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent event){
+                Customer.clearFrame(frame);
+                new Customer(frame);
+            }
+        });
+    
+        paidButton.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                try {
+                    // Use the getter method to access FOLDER_PATH
+                    Path ordersFilePath = Paths.get(Customer.getFolderPath(), "orders.dat");
+                    List<String> orders = Files.readAllLines(ordersFilePath);
+        
+                    // Identify the specific receipt to remove
+                    String receiptToRemove = ""; // Set this variable to the receipt you want to remove
+                    boolean foundReceipt = false;
+        
+                    // Loop through orders and find the receipt to remove
+                    for (int i = 0; i < orders.size(); i++) {
+                        if (orders.get(i).startsWith(receiptToRemove)) {
+                            foundReceipt = true;
+        
+                            while (!orders.get(i).isEmpty()) {
+                                orders.remove(i);
+                            }
+                            break;
+                        }
+                    }
+        
+                    if (foundReceipt) {
+                        Files.write(ordersFilePath, orders, StandardOpenOption.TRUNCATE_EXISTING);
+                        JOptionPane.showMessageDialog(frame, "Receipt marked as paid and removed.");
+                    } else {
+                        JOptionPane.showMessageDialog(frame, "Receipt not found.");
+                    }
+        
+                    // Update the JTextArea with the remaining orders
+                    ordersTextArea.setText("");
+                    for (String order : orders) {
+                        ordersTextArea.append(order + "\n");
+                    }
+                } catch (IOException ex) {
+                    ex.printStackTrace();
+                    JOptionPane.showMessageDialog(frame, "Error removing receipt from file.");
+                }
+            }
+        });
+    
         frame.setVisible(true);
     }
 }
