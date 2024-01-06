@@ -9,7 +9,7 @@ import java.util.List;
 class EWallet {
     private String walletID;
     private double balance;
-    private static final String WALLET_FILE_PATH = Customer.getWalletFilePath();
+    private static final String WALLET_FILE_PATH = "wallets.dat";
 
     public EWallet(String walletID) {
         this.walletID = walletID;

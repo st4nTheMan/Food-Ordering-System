@@ -17,7 +17,7 @@ class Customer implements ActionListener{
     private JButton viewWalletButton;
     private JButton addAmountButton;
     private static JList<String> orderListJList;
-    private static final String FOLDER_PATH = "C:/Users/VANDEX/Desktop/Food Ordering System 3";
+    private static final String FOLDER_PATH = "";
     private static final String ORDER_FILE_PATH = FOLDER_PATH + "/orders.dat";
     private static final String WALLET_FILE_PATH = FOLDER_PATH + "/wallets.dat";
 
