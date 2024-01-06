@@ -4,6 +4,7 @@ import javax.swing.JOptionPane;
 import java.io.IOException;
 import java.nio.charset.StandardCharsets;
 import java.nio.file.*;
+import java.util.ArrayList;
 import java.util.List;
 
 class EWallet {
@@ -38,7 +39,7 @@ class EWallet {
         System.out.println("Before Deduction: " + balance);
         balance -= amount;
         System.out.println("After Deduction: " + balance);
-        writeBalanceToWalletFile(); // Add this line to update the balance in the file
+        writeBalanceToWalletFile();
     }
 
     private double readBalanceFromWalletFile(String walletID) {
@@ -57,10 +58,21 @@ class EWallet {
     }
 
     private void writeBalanceToWalletFile() {
+        Path walletFilePath = Paths.get(WALLET_FILE_PATH);
+
         try {
-            String walletEntry = walletID + "," + balance + System.lineSeparator();
-            Files.write(Paths.get(Customer.getFolderPath(), "wallets.dat"), walletEntry.getBytes(StandardCharsets.UTF_8),
-                    StandardOpenOption.CREATE, StandardOpenOption.APPEND);
+            List<String> lines = Files.readAllLines(walletFilePath);
+            List<String> updatedLines = new ArrayList<>();
+
+            for (String line : lines) {
+                String[] parts = line.split(",");
+                if (parts.length == 2 && parts[0].equals(walletID)) {
+                    line = walletID + "," + balance;
+                }
+                updatedLines.add(line);
+            }
+
+            Files.write(walletFilePath, updatedLines);
         } catch (IOException e) {
             e.printStackTrace();
         }

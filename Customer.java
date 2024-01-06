@@ -18,7 +18,7 @@ class Customer implements ActionListener{
     private JButton addAmountButton;
     private static JList<String> orderListJList;
     private static final String FOLDER_PATH = "";
-    private static final String ORDER_FILE_PATH = FOLDER_PATH + "/orders.dat";
+    private static final String ORDER_FILE_PATH = "orders.dat";
     private static final String WALLET_FILE_PATH = FOLDER_PATH + "/wallets.dat";
 
     Customer(JFrame frame){
@@ -275,7 +275,7 @@ class Customer implements ActionListener{
             createDirectoryIfNotExists(FOLDER_PATH);
             appendOrderToFile(receiptMessage.toString(), orderType);
         } else if (option == 2) { // E-Wallet
-            handleEWalletPayment(orderListModel);
+            handleEWalletPayment(orderListModel, totalAmount);
         }
     }
 
@@ -334,26 +334,18 @@ class Customer implements ActionListener{
         }
     }
 
-    private static void handleEWalletPayment(DefaultListModel<String> orderListModel) {
+    private static void handleEWalletPayment(DefaultListModel<String> orderListModel, double totalAmount) {
         String username = JOptionPane.showInputDialog(frame, "Enter your username:");
+    
         if (username != null && !username.isEmpty()) {
             EWallet eWallet = new EWallet(username);
-            double totalAmount = calculateTotalAmount(orderListModel);
+            double balance = eWallet.getBalance();
     
-            int paymentOption = JOptionPane.showOptionDialog(frame,
-                    "Total Amount: P" + String.format("%.2f", totalAmount) + "\nChoose an option:",
-                    "Payment Options", JOptionPane.DEFAULT_OPTION, JOptionPane.QUESTION_MESSAGE, null,
-                    new Object[]{"Pay with E-Wallet"}, "Cancel");
-    
-            if (paymentOption == 0) {
-                if (eWallet.getBalance() >= totalAmount) {
-                    eWallet.deductBalance(totalAmount);
-                    JOptionPane.showMessageDialog(frame, "Payment successful using E-Wallet!");
-                } else {
-                    JOptionPane.showMessageDialog(frame, "Insufficient balance in E-Wallet. Please add more money.");
-                }
-                // Clear the order list model after completing the payment
-                orderListModel.clear();
+            if (balance >= totalAmount) {
+                eWallet.deductBalance(totalAmount);
+                JOptionPane.showMessageDialog(frame, "Payment successful using E-Wallet!");
+            } else {
+                JOptionPane.showMessageDialog(frame, "Insufficient balance in E-Wallet. Please add more money.");
             }
         }
     }
