@@ -85,7 +85,6 @@ class Cashier implements ActionListener{
         orderPanel.add(ordersTextArea);
     
         try {
-            // Use the getter method to access FOLDER_PATH
             List<String> orders = Files.readAllLines(Paths.get(Customer.getFolderPath(), "orders.dat"));
             for (String order : orders) {
                 ordersTextArea.append(order + "\n");
@@ -115,15 +114,12 @@ class Cashier implements ActionListener{
             @Override
             public void actionPerformed(ActionEvent e) {
                 try {
-                    // Use the getter method to access FOLDER_PATH
                     Path ordersFilePath = Paths.get(Customer.getFolderPath(), "orders.dat");
                     List<String> orders = Files.readAllLines(ordersFilePath);
         
-                    // Identify the specific receipt to remove
-                    String receiptToRemove = ""; // Set this variable to the receipt you want to remove
+                    String receiptToRemove = "";
                     boolean foundReceipt = false;
         
-                    // Loop through orders and find the receipt to remove
                     for (int i = 0; i < orders.size(); i++) {
                         if (orders.get(i).startsWith(receiptToRemove) && !orders.get(i).trim().isEmpty()) {
                             foundReceipt = true;
@@ -137,10 +133,8 @@ class Cashier implements ActionListener{
                     }
         
                     if (foundReceipt) {
-                        // Update the file with the remaining orders
                         Files.write(ordersFilePath, orders, StandardOpenOption.TRUNCATE_EXISTING);
         
-                        // Update the JTextArea with the remaining orders
                         ordersTextArea.setText("");
                         for (String order : orders) {
                             if (!order.trim().isEmpty()) {
