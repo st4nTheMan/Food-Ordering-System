@@ -6,6 +6,7 @@ import java.awt.event.*;
 import java.io.*;
 import java.nio.file.*;
 import java.util.List;
+import java.util.ListIterator;
 
 class Cashier implements ActionListener{
     private JFrame frame;
@@ -124,10 +125,11 @@ class Cashier implements ActionListener{
         
                     // Loop through orders and find the receipt to remove
                     for (int i = 0; i < orders.size(); i++) {
-                        if (orders.get(i).startsWith(receiptToRemove)) {
+                        if (orders.get(i).startsWith(receiptToRemove) && !orders.get(i).trim().isEmpty()) {
                             foundReceipt = true;
         
-                            while (!orders.get(i).isEmpty()) {
+                            // Remove the entire receipt, including any following empty lines
+                            while (i < orders.size() && !orders.get(i).isEmpty()) {
                                 orders.remove(i);
                             }
                             break;
@@ -135,16 +137,20 @@ class Cashier implements ActionListener{
                     }
         
                     if (foundReceipt) {
+                        // Update the file with the remaining orders
                         Files.write(ordersFilePath, orders, StandardOpenOption.TRUNCATE_EXISTING);
+        
+                        // Update the JTextArea with the remaining orders
+                        ordersTextArea.setText("");
+                        for (String order : orders) {
+                            if (!order.trim().isEmpty()) {
+                                ordersTextArea.append(order + "\n");
+                            }
+                        }
+        
                         JOptionPane.showMessageDialog(frame, "Receipt marked as paid and removed.");
                     } else {
                         JOptionPane.showMessageDialog(frame, "Receipt not found.");
-                    }
-        
-                    // Update the JTextArea with the remaining orders
-                    ordersTextArea.setText("");
-                    for (String order : orders) {
-                        ordersTextArea.append(order + "\n");
                     }
                 } catch (IOException ex) {
                     ex.printStackTrace();
@@ -152,7 +158,9 @@ class Cashier implements ActionListener{
                 }
             }
         });
-    
+        
+                
+
         frame.setVisible(true);
     }
 }

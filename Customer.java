@@ -276,7 +276,20 @@ class Customer implements ActionListener{
             appendOrderToFile(receiptMessage.toString(), orderType);
         } else if (option == 2) { // E-Wallet
             handleEWalletPayment(orderListModel, totalAmount);
+        
+            String orderType = getOrderType();
+        
+            createDirectoryIfNotExists(FOLDER_PATH);
+            appendOrderToFile(receiptMessage.toString(), orderType);
         }
+    }
+
+    private static String getOrderType() {
+        String[] orderTypeOptions = {"Dine in", "Take out"};
+        int orderTypeOption = JOptionPane.showOptionDialog(frame, "Select Order Type", "Order Type",
+                JOptionPane.DEFAULT_OPTION, JOptionPane.QUESTION_MESSAGE, null, orderTypeOptions, orderTypeOptions[0]);
+    
+        return orderTypeOptions[orderTypeOption];
     }
 
     private static void createDirectoryIfNotExists(String folderPath) {
@@ -348,19 +361,6 @@ class Customer implements ActionListener{
                 JOptionPane.showMessageDialog(frame, "Insufficient balance in E-Wallet. Please add more money.");
             }
         }
-    }
-
-    private static double calculateTotalAmount(DefaultListModel<String> orderListModel) {
-        double totalAmount = 0.0;
-    
-        for (int i = 0; i < orderListModel.size(); i++) {
-            String orderItem = orderListModel.getElementAt(i);
-            String[] itemDetails = orderItem.split("\\s+");
-            double itemPrice = Double.parseDouble(itemDetails[itemDetails.length - 1]);
-            totalAmount += itemPrice;
-        }
-    
-        return totalAmount;
     }
 
     private void handleAddAmount() {
